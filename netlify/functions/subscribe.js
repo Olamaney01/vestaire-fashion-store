@@ -1,13 +1,38 @@
-const subscribe = async (e) => {
-  e.preventDefault();
+export default async (req) => {
+  if (req.method !== "POST") {
+    return new Response("Method Not Allowed", {
+      status: 405,
+    });
+  }
 
   try {
-    const response = await fetch("/.netlify/functions/subscribe", {
+    const { email } = await req.json();
+
+    if (!email || !email.includes("@")) {
+      return new Response(
+        JSON.stringify({
+          message: "Please enter a valid email.",
+        }),
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+    }
+
+    const response = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "api-key": process.env.BREVO_API_KEY,
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({
+        email: email,
+        listIds: [Number(process.env.BREVO_LIST_ID)],
+        updateEnabled: true,
+      }),
     });
 
     const text = await response.text();
@@ -23,14 +48,46 @@ const subscribe = async (e) => {
     }
 
     if (!response.ok) {
-      alert(data.message || "Something went wrong. Please try again.");
-      return;
+      console.error("Brevo error:", data);
+
+      return new Response(
+        JSON.stringify({
+          message: JSON.stringify(data),
+        }),
+        {
+          status: response.status,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
     }
 
-    setSubscribed(true);
-    setEmail("");
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: "Successfully subscribed!",
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   } catch (error) {
-    console.error(error);
-    alert(error.message || "Something went wrong. Please try again.");
+    console.error("Function error:", error);
+
+    return new Response(
+      JSON.stringify({
+        message: error.message || "Server error",
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   }
 };

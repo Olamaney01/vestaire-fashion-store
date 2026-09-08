@@ -63,9 +63,11 @@ export default async (req) => {
       },
     );
   } catch (error) {
+    console.error(error);
+
     return new Response(
       JSON.stringify({
-        message: "Server error. Please try again.",
+        message: error.message || "Server error",
       }),
       {
         status: 500,

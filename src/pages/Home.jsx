@@ -40,9 +40,30 @@ export default function Home() {
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState("");
 
-  const subscribe = (e) => {
+  const subscribe = async (e) => {
     e.preventDefault();
-    if (email.includes("@")) setSubscribed(true);
+
+    try {
+      const response = await fetch("/.netlify/functions/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setSubscribed(true);
+      setEmail("");
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (

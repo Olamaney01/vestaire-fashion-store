@@ -1,36 +1,49 @@
-import { useState, useMemo, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { SlidersHorizontal, X, ChevronDown } from 'lucide-react'
-import ProductCard from '../components/ProductCard'
-import { products, categories, colors as colorOptions, sizes as sizeOptions } from '../data/products'
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { SlidersHorizontal, X, ChevronDown } from "lucide-react";
+import ProductCard from "../components/ProductCard";
+import {
+  products,
+  categories,
+  colors as colorOptions,
+  sizes as sizeOptions,
+} from "../data/products";
 
 const SORTS = [
-  { id: 'newest', label: 'Newest' },
-  { id: 'price-asc', label: 'Price: Low to High' },
-  { id: 'price-desc', label: 'Price: High to Low' },
-]
+  { id: "newest", label: "Newest" },
+  { id: "price-asc", label: "Price: Low to High" },
+  { id: "price-desc", label: "Price: High to Low" },
+];
 
-const MAX_PRICE = Math.max(...products.map((p) => p.price))
+const MAX_PRICE = Math.max(...products.map((p) => p.price));
 
 function FilterPanel({ state, onChange }) {
-  const { category, color, size, maxPrice } = state
+  const { category, color, size, maxPrice } = state;
 
   const toggle = (key, value) => {
-    onChange((s) => ({ ...s, [key]: s[key] === value ? '' : value }))
-  }
+    onChange((current) => ({
+      ...current,
+      [key]: current[key] === value ? "" : value,
+    }));
+  };
 
   return (
     <div className="flex flex-col gap-8">
+      {/* Category */}
       <div>
         <h3 className="font-display text-base mb-3">Category</h3>
+
         <div className="flex flex-col gap-2">
           {categories.map((c) => (
             <button
+              type="button"
               key={c.id}
-              onClick={() => toggle('category', c.id)}
+              onClick={() => toggle("category", c.id)}
               className={`text-left text-sm py-1 transition-colors ${
-                category === c.id ? 'text-ink font-medium' : 'text-muted hover:text-ink'
+                category === c.id
+                  ? "text-ink font-medium"
+                  : "text-muted hover:text-ink"
               }`}
             >
               {c.label}
@@ -39,17 +52,20 @@ function FilterPanel({ state, onChange }) {
         </div>
       </div>
 
+      {/* Color */}
       <div>
         <h3 className="font-display text-base mb-3">Color</h3>
+
         <div className="flex flex-wrap gap-2.5">
           {colorOptions.map((c) => (
             <button
+              type="button"
               key={c.id}
-              onClick={() => toggle('color', c.id)}
+              onClick={() => toggle("color", c.id)}
               aria-label={c.label}
               aria-pressed={color === c.id}
               className={`w-7 h-7 rounded-full border transition-shadow ${
-                color === c.id ? 'ring-2 ring-offset-2 ring-ink' : 'border-line'
+                color === c.id ? "ring-2 ring-offset-2 ring-ink" : "border-line"
               }`}
               style={{ backgroundColor: c.hex }}
             />
@@ -57,15 +73,20 @@ function FilterPanel({ state, onChange }) {
         </div>
       </div>
 
+      {/* Size */}
       <div>
         <h3 className="font-display text-base mb-3">Size</h3>
+
         <div className="flex flex-wrap gap-2">
           {sizeOptions.map((s) => (
             <button
+              type="button"
               key={s}
-              onClick={() => toggle('size', s)}
+              onClick={() => toggle("size", s)}
               className={`min-w-[2.5rem] px-2 py-1.5 text-xs border transition-colors ${
-                size === s ? 'bg-ink text-bone border-ink' : 'border-line hover:border-ink'
+                size === s
+                  ? "bg-ink text-bone border-ink"
+                  : "border-line hover:border-ink"
               }`}
             >
               {s}
@@ -74,30 +95,46 @@ function FilterPanel({ state, onChange }) {
         </div>
       </div>
 
+      {/* Max Price */}
       <div>
         <h3 className="font-display text-base mb-3">
           Max Price <span className="text-muted font-body">${maxPrice}</span>
         </h3>
+
         <input
           type="range"
           min={0}
           max={MAX_PRICE}
           value={maxPrice}
-          onChange={(e) => onChange((s) => ({ ...s, maxPrice: Number(e.target.value) }))}
-          className="w-full accent-ink"
+          onChange={(e) =>
+            onChange((current) => ({
+              ...current,
+              maxPrice: Number(e.target.value),
+            }))
+          }
+          className="w-full accent-ink cursor-pointer"
         />
       </div>
 
+      {/* Clear filters */}
       {(category || color || size || maxPrice < MAX_PRICE) && (
         <button
-          onClick={() => onChange({ category: '', color: '', size: '', maxPrice: MAX_PRICE })}
+          type="button"
+          onClick={() =>
+            onChange({
+              category: "",
+              color: "",
+              size: "",
+              maxPrice: MAX_PRICE,
+            })
+          }
           className="text-xs underline underline-offset-4 text-muted hover:text-ink self-start"
         >
           Clear all filters
         </button>
       )}
     </div>
-  )
+  );
 }
 
 function SkeletonGrid() {
@@ -111,94 +148,157 @@ function SkeletonGrid() {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 export default function Shop() {
-  const [searchParams] = useSearchParams()
-  const [loading, setLoading] = useState(true)
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [sort, setSort] = useState('newest')
-  const [filters, setFilters] = useState({ category: '', color: '', size: '', maxPrice: MAX_PRICE })
+  const [searchParams] = useSearchParams();
 
-  const query = searchParams.get('q') || ''
-  const urlFilter = searchParams.get('filter')
+  const [loading, setLoading] = useState(true);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [sortOpen, setSortOpen] = useState(false);
+  const [sort, setSort] = useState("newest");
+
+  const [filters, setFilters] = useState({
+    category: "",
+    color: "",
+    size: "",
+    maxPrice: MAX_PRICE,
+  });
+
+  const query = searchParams.get("q") || "";
+  const urlFilter = searchParams.get("filter");
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 600)
-    return () => clearTimeout(t)
-  }, [])
+    const t = setTimeout(() => {
+      setLoading(false);
+    }, 600);
 
-  useEffect(() => {
-    if (urlFilter === 'new') {
-      // handled in filtering below via isNew flag; no persistent state needed
-    }
-  }, [urlFilter])
+    return () => clearTimeout(t);
+  }, []);
 
   const filtered = useMemo(() => {
     let list = products.filter((p) => {
-      if (query && !p.name.toLowerCase().includes(query.toLowerCase())) return false
-      if (filters.category && p.category !== filters.category) return false
-      if (filters.color && !p.colors.includes(filters.color)) return false
-      if (filters.size && !p.sizes.includes(filters.size)) return false
-      if (p.price > filters.maxPrice) return false
-      if (urlFilter === 'new' && !p.isNew) return false
-      return true
-    })
+      if (query && !p.name.toLowerCase().includes(query.toLowerCase())) {
+        return false;
+      }
 
-    if (sort === 'price-asc') list = [...list].sort((a, b) => a.price - b.price)
-    else if (sort === 'price-desc') list = [...list].sort((a, b) => b.price - a.price)
-    else list = [...list].sort((a, b) => (b.isNew === a.isNew ? 0 : b.isNew ? 1 : -1))
+      if (filters.category && p.category !== filters.category) {
+        return false;
+      }
 
-    return list
-  }, [query, filters, sort, urlFilter])
+      if (filters.color && !p.colors.includes(filters.color)) {
+        return false;
+      }
+
+      if (filters.size && !p.sizes.includes(filters.size)) {
+        return false;
+      }
+
+      if (p.price > filters.maxPrice) {
+        return false;
+      }
+
+      if (urlFilter === "new" && !p.isNew) {
+        return false;
+      }
+
+      return true;
+    });
+
+    if (sort === "price-asc") {
+      list = [...list].sort((a, b) => a.price - b.price);
+    } else if (sort === "price-desc") {
+      list = [...list].sort((a, b) => b.price - a.price);
+    } else {
+      list = [...list].sort((a, b) =>
+        b.isNew === a.isNew ? 0 : b.isNew ? 1 : -1,
+      );
+    }
+
+    return list;
+  }, [query, filters, sort, urlFilter]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.35 }}
-      className="mx-auto max-w-[1600px] px-5 md:px-10 py-10 md:py-14"
-    >
+    <div className="mx-auto max-w-[1600px] px-5 md:px-10 py-10 md:py-14">
+      {/* Header */}
       <div className="mb-8 md:mb-10">
         <h1 className="font-display text-4xl md:text-5xl">
-          {query ? `Results for "${query}"` : urlFilter === 'new' ? 'New Arrivals' : 'Shop All'}
+          {query
+            ? `Results for "${query}"`
+            : urlFilter === "new"
+              ? "New Arrivals"
+              : "Shop All"}
         </h1>
+
         <p className="text-muted mt-2 text-sm">{filtered.length} products</p>
       </div>
 
+      {/* Toolbar */}
       <div className="flex items-center justify-between mb-8 border-y border-line py-3">
         <button
+          type="button"
           onClick={() => setMobileFiltersOpen(true)}
           className="lg:hidden flex items-center gap-2 text-sm"
         >
           <SlidersHorizontal size={16} strokeWidth={1.5} />
           Filters
         </button>
+
         <div className="hidden lg:block text-sm text-muted">Refine</div>
 
-        <div className="relative group">
-          <button className="flex items-center gap-1.5 text-sm">
+        {/* Sort */}
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setSortOpen((open) => !open)}
+            className="flex items-center gap-1.5 text-sm"
+            aria-expanded={sortOpen}
+            aria-haspopup="menu"
+          >
             Sort: {SORTS.find((s) => s.id === sort)?.label}
-            <ChevronDown size={14} strokeWidth={1.5} />
+            <ChevronDown
+              size={14}
+              strokeWidth={1.5}
+              className={`transition-transform duration-200 ${
+                sortOpen ? "rotate-180" : ""
+              }`}
+            />
           </button>
-          <div className="absolute right-0 top-full mt-2 w-52 bg-bone border border-line shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-20">
-            {SORTS.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setSort(s.id)}
-                className={`block w-full text-left px-4 py-2.5 text-sm hover:bg-paper ${
-                  sort === s.id ? 'text-ink font-medium' : 'text-muted'
-                }`}
+
+          <AnimatePresence>
+            {sortOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.15 }}
+                className="absolute right-0 top-full mt-2 w-52 bg-bone border border-line shadow-lg z-30"
+                role="menu"
               >
-                {s.label}
-              </button>
-            ))}
-          </div>
+                {SORTS.map((s) => (
+                  <button
+                    type="button"
+                    key={s.id}
+                    onClick={() => {
+                      setSort(s.id);
+                      setSortOpen(false);
+                    }}
+                    className={`block w-full text-left px-4 py-2.5 text-sm hover:bg-paper ${
+                      sort === s.id ? "text-ink font-medium" : "text-muted"
+                    }`}
+                    role="menuitem"
+                  >
+                    {s.label}
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
+      {/* Products */}
       <div className="flex gap-10">
         <aside className="hidden lg:block w-56 shrink-0">
           <FilterPanel state={filters} onChange={setFilters} />
@@ -210,7 +310,10 @@ export default function Shop() {
           ) : filtered.length === 0 ? (
             <div className="py-24 text-center">
               <p className="font-display text-2xl mb-2">No products found</p>
-              <p className="text-muted text-sm">Try adjusting your filters or search term.</p>
+
+              <p className="text-muted text-sm">
+                Try adjusting your filters or search term.
+              </p>
             </div>
           ) : (
             <AnimatePresence mode="wait">
@@ -235,37 +338,55 @@ export default function Shop() {
       <AnimatePresence>
         {mobileFiltersOpen && (
           <>
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-ink/40"
+              className="fixed inset-0 z-[60] bg-ink/40"
               onClick={() => setMobileFiltersOpen(false)}
             />
+
+            {/* Drawer */}
             <motion.div
-              initial={{ x: '-100%' }}
+              initial={{ x: "-100%" }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-0 left-0 z-50 h-full w-[85%] max-w-sm bg-bone p-6 overflow-y-auto"
+              exit={{ x: "-100%" }}
+              transition={{
+                duration: 0.35,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="fixed top-0 left-0 z-[70] h-full w-[85%] max-w-sm bg-bone overflow-y-auto overscroll-contain"
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="font-display text-2xl">Filters</h2>
-                <button onClick={() => setMobileFiltersOpen(false)} aria-label="Close filters">
-                  <X size={22} strokeWidth={1.5} />
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-8">
+                  <h2 className="font-display text-2xl">Filters</h2>
+
+                  <button
+                    type="button"
+                    onClick={() => setMobileFiltersOpen(false)}
+                    aria-label="Close filters"
+                    className="p-2 -mr-2"
+                  >
+                    <X size={22} strokeWidth={1.5} />
+                  </button>
+                </div>
+
+                <FilterPanel state={filters} onChange={setFilters} />
+
+                <button
+                  type="button"
+                  onClick={() => setMobileFiltersOpen(false)}
+                  className="mt-10 w-full bg-ink text-bone py-4 text-sm tracking-wide"
+                >
+                  Show {filtered.length} results
                 </button>
               </div>
-              <FilterPanel state={filters} onChange={setFilters} />
-              <button
-                onClick={() => setMobileFiltersOpen(false)}
-                className="mt-10 w-full bg-ink text-bone py-4 text-sm tracking-wide"
-              >
-                Show {filtered.length} results
-              </button>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-    </motion.div>
-  )
+    </div>
+  );
 }

@@ -40,30 +40,9 @@ export default function Home() {
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState("");
 
-  const subscribe = async (e) => {
+  const subscribe = (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch("/.netlify/functions/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        alert(data.message || "Something went wrong. Please try again.");
-        return;
-      }
-
-      setSubscribed(true);
-      setEmail("");
-    } catch (error) {
-      alert("Something went wrong. Please try again.");
-    }
+    if (email.includes("@")) setSubscribed(true);
   };
 
   return (
@@ -252,11 +231,12 @@ export default function Home() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 bg-transparent py-3 outline-none placeholder:text-muted text-sm"
+                className="flex-1 min-w-0 bg-transparent py-3 px-3 text-sm border-b border-ink/40 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 focus:border-ink transition-colors placeholder:text-muted"
+                style={{ outline: "none", boxShadow: "none" }}
               />
               <button
                 type="submit"
-                className="text-sm tracking-wide px-2 hover:text-clay transition-colors"
+                className="shrink-0 bg-ink text-bone px-5 py-3 text-sm tracking-wide transition-all duration-200 hover:bg-clay hover:text-bone"
               >
                 Subscribe
               </button>

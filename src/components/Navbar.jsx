@@ -1,45 +1,45 @@
-import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react'
-import { useStore } from '../store/useStore'
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, Heart, ShoppingBag, Menu, X } from "lucide-react";
+import { useStore } from "../store/useStore";
 
 const NAV_LINKS = [
-  { to: '/shop', label: 'Shop' },
-  { to: '/shop?filter=new', label: 'New Arrivals' },
-  { to: '/shop', label: 'Collections' },
-]
+  { to: "/shop", label: "Shop" },
+  { to: "/shop?filter=new", label: "New Arrivals" },
+  { to: "/shop", label: "Collections" },
+];
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [query, setQuery] = useState('')
-  const [scrolled, setScrolled] = useState(false)
-  const navigate = useNavigate()
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
-  const cartCount = useStore((s) => s.cartCount())
-  const wishlistCount = useStore((s) => s.wishlist.length)
-  const openCart = useStore((s) => s.openCart)
+  const cartCount = useStore((s) => s.cartCount());
+  const wishlistCount = useStore((s) => s.wishlist.length);
+  const openCart = useStore((s) => s.openCart);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const submitSearch = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (query.trim()) {
-      navigate(`/shop?q=${encodeURIComponent(query.trim())}`)
-      setSearchOpen(false)
-      setQuery('')
+      navigate(`/shop?q=${encodeURIComponent(query.trim())}`);
+      setSearchOpen(false);
+      setQuery("");
     }
-  }
+  };
 
   return (
     <header
       className={`sticky top-0 z-40 transition-colors duration-300 ${
-        scrolled ? 'bg-bone/95 backdrop-blur border-b border-line' : 'bg-transparent'
+        scrolled ? "bg-bone/95  border-b border-line" : "bg-transparent"
       }`}
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
@@ -88,7 +88,11 @@ export default function Navbar() {
                 </span>
               )}
             </Link>
-            <button className="p-2 relative" onClick={openCart} aria-label="Cart">
+            <button
+              className="p-2 relative"
+              onClick={openCart}
+              aria-label="Cart"
+            >
               <ShoppingBag size={19} strokeWidth={1.5} />
               <AnimatePresence>
                 {cartCount > 0 && (
@@ -163,9 +167,9 @@ export default function Navbar() {
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
-              initial={{ x: '-100%' }}
+              initial={{ x: "-100%" }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
+              exit={{ x: "-100%" }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="fixed top-0 left-0 z-50 h-full w-[80%] max-w-xs bg-bone p-8 flex flex-col"
             >
@@ -200,5 +204,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
-  )
+  );
 }

@@ -60,7 +60,7 @@ export default function Home() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-80"
         >
-          <source src="/hero_Bg_video.mp4" type="video/mp4" />
+          <source src="/hero_Bg_video1.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-ink/30" />

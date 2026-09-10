@@ -45,10 +45,12 @@ export default function Footer() {
           <h4 className="font-body text-xs tracking-wide text-muted mb-4">
             Support
           </h4>
-          <ul className="space-y-3 text-sm text-muted">
-            <li>Shipping &amp; Returns</li>
-            <li>Size Guide</li>
-            <li>Contact</li>
+          <ul className="space-y-3 text-sm ">
+            <li className="hover:text-clay transition-colors">
+              Shipping &amp; Returns
+            </li>
+            <li className="hover:text-clay transition-colors">Size Guide</li>
+            <li className="hover:text-clay transition-colors">Contact</li>
           </ul>
         </div>
 
@@ -56,9 +58,9 @@ export default function Footer() {
           <h4 className="font-body text-xs tracking-wide text-muted mb-4">
             Follow
           </h4>
-          <ul className="space-y-3 text-sm text-muted">
-            <li>Instagram</li>
-            <li>Pinterest</li>
+          <ul className="space-y-3 text-sm ">
+            <li className="hover:text-clay transition-colors">Instagram</li>
+            <li className="hover:text-clay transition-colors">Pinterest</li>
           </ul>
         </div>
       </div>

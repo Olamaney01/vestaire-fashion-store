@@ -1,7 +1,10 @@
 export default async (req) => {
   if (req.method !== "POST") {
-    return new Response("Method Not Allowed", {
+    return new Response(JSON.stringify({ message: "Method Not Allowed" }), {
       status: 405,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   }
 
@@ -22,6 +25,12 @@ export default async (req) => {
       );
     }
 
+    const listId = Number(process.env.BREVO_LIST_ID);
+
+    console.log("Email:", email);
+    console.log("List ID:", listId);
+    console.log("API key exists:", Boolean(process.env.BREVO_API_KEY));
+
     const response = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
       headers: {
@@ -29,30 +38,32 @@ export default async (req) => {
         "api-key": process.env.BREVO_API_KEY,
       },
       body: JSON.stringify({
-        email: email,
-        listIds: [Number(process.env.BREVO_LIST_ID)],
+        email,
+        listIds: [listId],
         updateEnabled: true,
       }),
     });
 
     const text = await response.text();
 
+    console.log("Brevo status:", response.status);
+    console.log("Brevo response:", text);
+
     let data = {};
 
-    if (text) {
-      try {
-        data = JSON.parse(text);
-      } catch {
-        data = { message: text };
-      }
+    try {
+      data = text ? JSON.parse(text) : {};
+    } catch {
+      data = { raw: text };
     }
 
     if (!response.ok) {
-      console.error("Brevo error:", data);
-
       return new Response(
         JSON.stringify({
-          message: JSON.stringify(data),
+          success: false,
+          status: response.status,
+          message: data.message || text || "Brevo request failed",
+          brevo: data,
         }),
         {
           status: response.status,
@@ -67,6 +78,7 @@ export default async (req) => {
       JSON.stringify({
         success: true,
         message: "Successfully subscribed!",
+        brevo: data,
       }),
       {
         status: 200,
@@ -80,6 +92,7 @@ export default async (req) => {
 
     return new Response(
       JSON.stringify({
+        success: false,
         message: error.message || "Server error",
       }),
       {

@@ -16,7 +16,7 @@ const CATEGORY_CARDS = [
     label: "Knitwear",
     to: "/shop",
     image:
-      "https://images.unsplash.com/photo-1614975059251-992f11792b9f?auto=format&fit=crop&w=900&q=80",
+      "https://images.pexels.com/photos/15040299/pexels-photo-15040299.jpeg?auto=format&fit=crop&w=900&q=80",
   },
   {
     label: "Accessories",
@@ -53,14 +53,16 @@ export default function Home() {
     >
       {/* HERO */}
       <section className="relative h-[92vh] min-h-[560px] overflow-hidden bg-ink">
-        <motion.img
-          src="https://images.unsplash.com/photo-1678978617135-d8b54655f592?q=80&w=1800&auto=format&fit=crop"
-          alt="Model wearing the Vestaire autumn collection"
-          initial={{ scale: 1.15 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 3.5, ease: [0.22, 1, 0.36, 1] }}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-80"
-        />
+        >
+          <source src="/hero_Bg_video.mp4" type="video/mp4" />
+        </video>
+
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-ink/30" />
 
         <div className="relative h-full flex flex-col justify-end px-5 md:px-10 pb-16 md:pb-24 max-w-[1600px] mx-auto">

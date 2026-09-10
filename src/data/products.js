@@ -120,7 +120,7 @@ export const products = [
       "Free standard shipping, 3–5 business days. Free returns within 30 days.",
     images: [
       img("photo-1551028719-00167b16eac5"),
-      img("photo-1544966503-7cc5ac882d5f"),
+      // img("photo-1544966503-7cc5ac882d5f"),
       img("photo-1516257984-b1b4d707412e"),
     ],
   },
@@ -160,7 +160,7 @@ export const products = [
       "Free standard shipping, 3–5 business days. Free returns within 30 days.",
     images: [
       img("photo-1620799140408-edc6dcb6d633"),
-      img("photo-1610384104075-e05c8b220a97"),
+      // img("photo-1610384104075-e05c8b220a97"),
       img("photo-1611312449408-fcece27cdbb7"),
     ],
   },
@@ -260,8 +260,470 @@ export const products = [
       "Free standard shipping, 3–5 business days. Free returns within 30 days.",
     images: [
       img("photo-1576871337622-98d48d1cf531"),
-      img("photo-1510598969022-c4c6c5d05ba9"),
-      img("photo-1519415943484-9fa1873496d4"),
+      // img("photo-1510598969022-c4c6c5d05ba9"),
+      // img("photo-1519415943484-9fa1873496d4"),
+    ],
+  },
+  {
+    id: "p13",
+    name: "Silk Satin Blouse",
+    category: "tops",
+    price: 240,
+    isNew: false,
+    styleCode: "VST-TP-052",
+    colors: ["ivory", "black", "champagne"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "Cut from lustrous silk satin, this blouse drapes effortlessly across the body with a relaxed collar and softly curved hem.",
+    fit: "Relaxed fit. Size down for a more tailored silhouette.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      // img("photo-1596755094514-f87e34085b2c"),
+      img("photo-1605763240000-7e93b172d754"),
+      // img("photo-1602810318383-e386cc2a3ccf"),
+    ],
+  },
+
+  {
+    id: "p14",
+    name: "Double-Breasted Cashmere Coat",
+    category: "outerwear",
+    price: 620,
+    compareAt: 780,
+    isNew: true,
+    styleCode: "VST-OC-053",
+    colors: ["camel", "charcoal", "black"],
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "A luxurious cashmere-wool blend coat with a double-breasted front, wide peak lapels, and a generously proportioned silhouette.",
+    fit: "Oversized tailored fit. Designed for layering.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1539533018447-63fcce2678e3"),
+      img("photo-1548624313-039f5f9f5f5b"),
+      img("photo-1591369822096-ffd140ec948f"),
+    ],
+  },
+
+  {
+    id: "p15",
+    name: "Italian Wool Trousers",
+    category: "bottoms",
+    price: 265,
+    isNew: false,
+    styleCode: "VST-TR-054",
+    colors: ["black", "charcoal", "stone"],
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "Tailored from fine Italian wool, these trousers feature a high waist, deep pleats, and a fluid wide-leg silhouette.",
+    fit: "High-rise, relaxed wide-leg fit.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1594633312681-425c7b97ccd1"),
+      img("photo-1624378439575-d8705ad7ae80"),
+      img("photo-1506629905607-d9c297d3e1e8"),
+    ],
+  },
+
+  {
+    id: "p16",
+    name: "Cashmere Polo Knit",
+    category: "knitwear",
+    price: 295,
+    isNew: true,
+    styleCode: "VST-KN-055",
+    colors: ["ivory", "camel", "black"],
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "An exceptionally soft cashmere-blend polo knit with a refined open collar and subtly relaxed proportions.",
+    fit: "Relaxed regular fit.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1611312449412-6cefac5dc3e4"),
+      img("photo-1620799140408-edc6dcb6d633"),
+      img("photo-1576566588028-4147f3842f27"),
+    ],
+  },
+
+  {
+    id: "p17",
+    name: "Leather Chelsea Boot",
+    category: "shoes",
+    price: 320,
+    isNew: false,
+    styleCode: "VST-SH-056",
+    colors: ["black", "dark-brown"],
+    sizes: ["38", "39", "40", "41", "42", "43", "44"],
+    description:
+      "A refined Chelsea boot crafted from smooth leather with an almond toe, elastic side panels, and a low stacked heel.",
+    fit: "True to size. Structured leather upper.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1638247025967-b4e38f787b76"),
+      img("photo-1608256246200-53e8b6b8f4d9"),
+      img("photo-1614252235316-8c857d38b5f4"),
+    ],
+  },
+
+  {
+    id: "p18",
+    name: "Leather Frame Shoulder Bag",
+    category: "bags",
+    price: 380,
+    isNew: true,
+    styleCode: "VST-BG-057",
+    colors: ["black", "espresso", "burgundy"],
+    sizes: ["One Size"],
+    description:
+      "A sculptural leather shoulder bag with a softly curved frame, polished hardware, and a spacious suede-lined interior.",
+    fit: "One size. Adjustable shoulder strap.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1584917865442-de89df76afd3"),
+      img("photo-1590874103328-eac38a683ce7"),
+      img("photo-1566150905458-1bf1fc113f0d"),
+    ],
+  },
+
+  {
+    id: "p19",
+    name: "Silk Column Dress",
+    category: "dresses",
+    price: 420,
+    isNew: false,
+    styleCode: "VST-DR-058",
+    colors: ["black", "ivory", "deep-burgundy"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A floor-length silk dress with a clean column silhouette, sculpted neckline, and fluid movement designed for evening occasions.",
+    fit: "Slim through the body with a fluid drape.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1566174053879-31528523f8ae"),
+      img("photo-1515372039744-b8f02a3ae446"),
+      img("photo-1539008835657-9e8e9680c956"),
+    ],
+  },
+
+  {
+    id: "p20",
+    name: "Leather Double-Breasted Blazer",
+    category: "outerwear",
+    price: 495,
+    isNew: false,
+    styleCode: "VST-OW-059",
+    colors: ["black", "dark-brown"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A statement blazer cut from supple leather with a double-breasted front, sharp shoulders, and softly structured tailoring.",
+    fit: "Relaxed tailored fit.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1551028719-00167b16eac5"),
+      img("photo-1591047139829-d91aecb6caea"),
+      img("photo-1548126032-079a0fb0099d"),
+    ],
+  },
+
+  {
+    id: "p21",
+    name: "Fine Merino Turtleneck",
+    category: "knitwear",
+    price: 185,
+    isNew: false,
+    styleCode: "VST-KN-060",
+    colors: ["black", "ivory", "camel", "charcoal"],
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "A fine merino wool turtleneck with an exceptionally clean neckline and lightweight construction for understated layering.",
+    fit: "Close, comfortable fit.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1608234807905-4466023792f5"),
+      // img("photo-1576566588028-4147f3842f27"),
+      // img("photo-1620799140408-edc6dcb6d633"),
+    ],
+  },
+
+  {
+    id: "p22",
+    name: "Minimal Leather Loafer",
+    category: "shoes",
+    price: 285,
+    isNew: true,
+    styleCode: "VST-SH-061",
+    colors: ["black", "espresso", "burgundy"],
+    sizes: ["38", "39", "40", "41", "42", "43", "44"],
+    description:
+      "A polished leather loafer with a refined almond toe, discreet metal detail, and a softly squared heel.",
+    fit: "True to size.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1614252235316-8c857d38b5f4"),
+      // img("photo-1616401784845-180882ba9ba8"),
+      img("photo-1582897085656-c636d006a246"),
+    ],
+  },
+
+  {
+    id: "p23",
+    name: "Structured Leather Tote",
+    category: "bags",
+    price: 450,
+    compareAt: 560,
+    isNew: false,
+    styleCode: "VST-BG-062",
+    colors: ["black", "tan", "espresso"],
+    sizes: ["One Size"],
+    description:
+      "A structured full-grain leather tote with rolled handles, a spacious interior, and understated brushed-metal hardware.",
+    fit: "One size. Designed for everyday carry.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1553062407-98eeb64c6a62"),
+      img("photo-1548036328-c9fa89d128fa"),
+      img("photo-1584917865442-de89df76afd3"),
+    ],
+  },
+
+  {
+    id: "p24",
+    name: "Silk-Cashmere Cardigan",
+    category: "knitwear",
+    price: 340,
+    isNew: true,
+    styleCode: "VST-KN-063",
+    colors: ["ivory", "stone", "black"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A luxurious silk-cashmere cardigan with tonal buttons, a soft brushed finish, and an elegant relaxed drape.",
+    fit: "Relaxed fit.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1576566588028-4147f3842f27"),
+      img("photo-1611312449408-fcece27cdbb7"),
+      img("photo-1620799140408-edc6dcb6d633"),
+    ],
+  },
+
+  {
+    id: "p25",
+    name: "Sculpted Satin Midi Dress",
+    category: "dresses",
+    price: 390,
+    isNew: false,
+    styleCode: "VST-DR-064",
+    colors: ["black", "champagne", "clay"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A sculpted satin midi dress with a softly gathered waist and fluid skirt designed to move elegantly with the body.",
+    fit: "Fitted through the waist with a fluid midi skirt.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1595777457583-95e059d581b8"),
+      img("photo-1566174053879-31528523f8ae"),
+      img("photo-1539008835657-9e8e9680c956"),
+    ],
+  },
+
+  // {
+  //   id: "p26",
+  //   name: "Italian Suede Chelsea Boot",
+  //   category: "shoes",
+  //   price: 350,
+  //   isNew: false,
+  //   styleCode: "VST-SH-065",
+  //   colors: ["sand", "espresso", "black"],
+  //   sizes: ["38", "39", "40", "41", "42", "43", "44"],
+  //   description:
+  //     "An elegant Chelsea boot in supple Italian suede, finished with tonal elastic panels and a refined leather sole.",
+  //   fit: "True to size.",
+  //   delivery:
+  //     "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+  //   images: [
+  //     img("photo-1608256246200-53e8b6b8f4d9"),
+  //     img("photo-1614252235316-8c857d38b5f4"),
+  //     img("photo-1582897085656-c636d006a246"),
+  //   ],
+  // },
+
+  {
+    id: "p27",
+    name: "Croc-Embossed Top Handle Bag",
+    category: "bags",
+    price: 520,
+    isNew: true,
+    styleCode: "VST-BG-066",
+    colors: ["black", "espresso", "burgundy"],
+    sizes: ["One Size"],
+    description:
+      "A sophisticated top-handle bag with a structured silhouette, croc-embossed leather, and a detachable shoulder strap.",
+    fit: "One size.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1584917865442-de89df76afd3"),
+      img("photo-1590874103328-eac38a683ce7"),
+      img("photo-1553062407-98eeb64c6a62"),
+    ],
+  },
+
+  {
+    id: "p28",
+    name: "Tailored Velvet Blazer",
+    category: "outerwear",
+    price: 375,
+    isNew: false,
+    styleCode: "VST-OW-067",
+    colors: ["black", "deep-burgundy", "midnight"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A luxurious velvet blazer featuring satin peak lapels, softly padded shoulders, and precise evening tailoring.",
+    fit: "Slim tailored fit.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      // img("photo-1591369822096-ffd140ec948f"),
+      img("photo-1548126032-079a0fb0099d"),
+      img("photo-1551488831-00ddcb6c6bd3"),
+    ],
+  },
+
+  {
+    id: "p29",
+    name: "Pleated Silk Trousers",
+    category: "bottoms",
+    price: 290,
+    isNew: true,
+    styleCode: "VST-TR-068",
+    colors: ["black", "ivory", "champagne"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "Fluid silk trousers with deep pleats, a high waist, and an elegant wide leg that creates effortless movement.",
+    fit: "High-rise relaxed wide-leg fit.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1594633312681-425c7b97ccd1"),
+      img("photo-1624378439575-d8705ad7ae80"),
+      img("photo-1506629905607-d9c297d3e1e8"),
+    ],
+  },
+
+  // {
+  //   id: "p30",
+  //   name: "Premium Leather Chelsea",
+  //   category: "shoes",
+  //   price: 410,
+  //   isNew: false,
+  //   styleCode: "VST-SH-069",
+  //   colors: ["black", "dark-brown"],
+  //   sizes: ["38", "39", "40", "41", "42", "43", "44"],
+  //   description:
+  //     "A premium leather Chelsea with a sleek almond toe, hand-finished edges, and a substantial yet refined sole.",
+  //   fit: "True to size.",
+  //   delivery:
+  //     "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+  //   images: [
+  //     img("photo-1614252235316-8c857d38b5f4"),
+  //     img("photo-1608256246200-53e8b6b8f4d9"),
+  //     img("photo-1582897085656-c636d006a246"),
+  //   ],
+  // },
+
+  {
+    id: "p31",
+    name: "Lambskin Leather Shirt",
+    category: "tops",
+    price: 460,
+    isNew: false,
+    styleCode: "VST-TP-070",
+    colors: ["black", "espresso"],
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "A supple lambskin leather shirt with a relaxed silhouette, concealed placket, and exceptionally smooth hand feel.",
+    fit: "Relaxed fit with room through the body.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1598032895397-b9472444bf93"),
+      img("photo-1551028719-00167b16eac5"),
+      img("photo-1591047139829-d91aecb6caea"),
+    ],
+  },
+
+  {
+    id: "p32",
+    name: "Cashmere Blend Trousers",
+    category: "bottoms",
+    price: 310,
+    isNew: true,
+    styleCode: "VST-TR-071",
+    colors: ["charcoal", "camel", "black"],
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "Luxuriously soft tailored trousers crafted from a cashmere-wool blend with a clean front and elegant relaxed drape.",
+    fit: "Relaxed straight-leg fit.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1624378439575-d8705ad7ae80"),
+      img("photo-1594633312681-425c7b97ccd1"),
+      img("photo-1506629905607-d9c297d3e1e8"),
+    ],
+  },
+
+  {
+    id: "p33",
+    name: "Nappa Leather Mini Bag",
+    category: "bags",
+    price: 395,
+    isNew: false,
+    styleCode: "VST-BG-072",
+    colors: ["black", "ivory", "burgundy"],
+    sizes: ["One Size"],
+    description:
+      "A compact nappa leather bag with a sculpted curved profile, polished clasp, and detachable chain-and-leather strap.",
+    fit: "One size.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1566150905458-1bf1fc113f0d"),
+      img("photo-1590874103328-eac38a683ce7"),
+      img("photo-1584917865442-de89df76afd3"),
+    ],
+  },
+  {
+    id: "p34",
+    name: "Minimalist Leather Watch",
+    category: "accessories",
+    price: 155,
+    isNew: true,
+    styleCode: "VST-AC-073",
+    colors: ["black", "tan", "silver"],
+    sizes: ["One Size"],
+    description:
+      "A minimalist timepiece with a slim leather strap, clean dial, and polished case designed for quiet sophistication.",
+    fit: "One size with adjustable leather strap.",
+    delivery:
+      "Free standard shipping, 3–5 business days. Free returns within 30 days.",
+    images: [
+      img("photo-1523170335258-f5ed11844a49"),
+      img("photo-1524805444758-089113d48a6d"),
+      img("photo-1547996160-81dfa63595aa"),
     ],
   },
 ];
